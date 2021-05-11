@@ -64,14 +64,29 @@ export function getRelativeMinorOfKey(keyName) {
   return {};
 }
 
-export function getSharpsOfKey(sharpsCount) {
-  throw new Error("Not Yet Implemented");
-  return {};
+// the group name for Flat/Natural/Sharp identifiers is accidentals
+export function getAccidentalsOfKey(accidentalsCount, accidentalType) {
+  if (
+    typeof accidentalsCount !== "number" ||
+    accidentalsCount < 0 ||
+    accidentalsCount > 7
+  )
+    throw TypeError(
+      `accidentalsCount property should only be a number between 0-7. Received ${accidentalsCount}`
+    );
+
+  switch (accidentalType) {
+    case "flat":
+      return Array.from(flattenedKeys).slice(0, accidentalsCount);
+    case "sharp":
+      return Array.from(sharpenedKeys).slice(0, accidentalsCount);
+    default:
+      throw TypeError(
+        `accidentalType property should only be 'flat' or 'sharp'. Received ${accidentalType}`
+      );
+  }
 }
-export function getFlatsOfKey(flatsCount) {
-  throw new Error("Not Yet Implemented");
-  return {};
-}
+
 // Localised
 function getPositionCircularArray(array, index) {
   const arrayLength = array.length;

@@ -1,7 +1,6 @@
 import {
   createSimpleKeyObjects,
-  getFlatsOfKey,
-  getSharpsOfKey,
+  getAccidentalsOfKey,
   generateKeySignatures
 } from "./keySignatures";
 const sharpenedKeys = {
@@ -72,19 +71,20 @@ describe("Create Simple Key Signature Objects for Major Key Signatures", () => {
       expect(typeof keySignature.sharpsCount).toEqual("number");
     });
   });
+  it("Correctly returns 0 flats or sharps for C Major", () => {
+    expect(keyC.sharpsCount).toEqual(0);
+    expect(keyC.flatsCount).toEqual(0);
+  });
   it("Returns correct number of Sharps for keys without Sharp Notes", () => {
     flatKeys.forEach((keySignature) => {
-      expect(Object(keySignature).hasOwnProperty("sharpsCount")).toEqual(true);
-      expect(keySignature?.sharpsCount).toEqual(0);
+      expect(keySignature.sharpsCount).toEqual(0);
     });
   });
   it("Returns correct number of Flats for keys without Flat Notes", () => {
     sharpKeys.forEach((keySignature) => {
-      expect(keySignature.hasOwnProperty("flatsCount")).toBe(true);
-      expect(keySignature?.flatsCount).toEqual(0);
+      expect(keySignature.flatsCount).toEqual(0);
     });
   });
-
   it("Returns correct number of sharps for keys with Sharp Notes", () => {
     expect(keyG.sharpsCount).toEqual(1);
     expect(keyD.sharpsCount).toEqual(2);
@@ -104,40 +104,25 @@ describe("Create Simple Key Signature Objects for Major Key Signatures", () => {
     expect(keyCFlat.flatsCount).toEqual(7);
   });
 });
-describe.skip("Get Flats of Each Key Signatures Correctly", () => {
-  const keySignaturesArray = createSimpleKeyObjects();
-  const keyC = keySignaturesArray.find((x) => x.name === "C");
-  const keyG = keySignaturesArray.find((x) => x.name === "G");
-  const keyD = keySignaturesArray.find((x) => x.name === "D");
-  const keyA = keySignaturesArray.find((x) => x.name === "A");
-  const keyE = keySignaturesArray.find((x) => x.name === "E");
-  const keyB = keySignaturesArray.find((x) => x.name === "B");
-  const keyFSharp = keySignaturesArray.find((x) => x.name === "F#");
-  const keyCSharp = keySignaturesArray.find((x) => x.name === "C#");
-  const keyF = keySignaturesArray.find((x) => x.name === "F");
-  const keyBFlat = keySignaturesArray.find(
-    (x) => x.name === flattenedKeys.bFlat
-  );
-  const keyEFlat = keySignaturesArray.find(
-    (x) => x.name === flattenedKeys.eFlat
-  );
-  const keyAFlat = keySignaturesArray.find(
-    (x) => x.name === flattenedKeys.aFlat
-  );
-  const keyDFlat = keySignaturesArray.find(
-    (x) => x.name === flattenedKeys.dFlat
-  );
-  const keyGFlat = keySignaturesArray.find(
-    (x) => x.name === flattenedKeys.gFlat
-  );
-  const keyCFlat = keySignaturesArray.find(
-    (x) => x.name === flattenedKeys.cFlat
-  );
-
+describe("Get Flats of Each Key Signatures Correctly", () => {
   it("Returns Sharps as Notes for each Key with Sharps", () => {
-    expect(getFlatsOfKey(keyC)).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
   });
   it("Returns Flats as Notes for each Key with Flats", () => {
-    expect(getFlatsOfKey(keyC)).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
   });
 });
