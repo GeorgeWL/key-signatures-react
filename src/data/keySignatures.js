@@ -1,6 +1,21 @@
-const flatSymbol = "♭";
-const sharpKeys = ["F#", "C#", "G#", "D#", "A#", "E#", "B#"];
-const flatKeys = ["B♭", "E♭", "A♭", "D♭", "G♭", "C♭", "F♭"];
+const sharpenedKeys = {
+  fSharp: "F#",
+  cSharp: "C#",
+  gSharp: "G#",
+  dSharp: "D#",
+  aSharp: "A#",
+  eSharp: "E#",
+  bSharp: "B#"
+};
+const flattenedKeys = {
+  bFlat: "B♭",
+  eFlat: "E♭",
+  aFlat: "A♭",
+  dFlat: "D♭",
+  gFlat: "G♭",
+  cFlat: "C♭",
+  fFlat: "F♭"
+};
 const keyNames = [
   "C",
   "G",
@@ -8,15 +23,15 @@ const keyNames = [
   "A",
   "E",
   "B",
-  `F#`,
-  "C#",
+  sharpenedKeys.fSharp,
+  sharpenedKeys.cSharp,
   "F",
-  `B${flatSymbol}`,
-  `E${flatSymbol}`,
-  `A${flatSymbol}`,
-  `D${flatSymbol}`,
-  `G${flatSymbol}`,
-  `C${flatSymbol}`
+  flattenedKeys.bFlat,
+  flattenedKeys.eFlat,
+  flattenedKeys.aFlat,
+  flattenedKeys.dFlat,
+  flattenedKeys.gFlat,
+  flattenedKeys.cFlat
 ];
 export function generateKeySignatures() {
   const keyObjectsSimple = createSimpleKeyObjects();
@@ -34,7 +49,7 @@ export function createSimpleKeyObjects() {
   const isSharp = (index) => index < 8;
   const isFlat = (index) => index > 7;
   return keyNames.map((keyName, index) => {
-    const sharpsCount = isSharp(index) && keyName !== "C" ? index : 0;
+    const sharpsCount = isSharp(index) ? index : 0;
     const flatsCount = isFlat(index) && keyName !== "C" ? index - 7 : 0;
     return {
       name: keyName,
