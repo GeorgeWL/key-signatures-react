@@ -19,11 +19,11 @@ function generateKeySignatures() {
     `G${flatSymbol}`,
     `C${flatSymbol}`
   ];
-  const isSharp = (index) => index <= 7;
-  const isFlat = (index) => index >= 7;
+  const isSharp = (index) => index < 8;
+  const isFlat = (index) => index > 7;
   const keyObjectsSimple = keyNames.map((keyName, index) => {
-    const sharpsCount = isSharp(index) ? index : 0;
-    const flatsCount = isFlat(index) ? index - 7 : 0;
+    const sharpsCount = isSharp(index) && keyName !== "C" ? index : 0;
+    const flatsCount = isFlat(index) && keyName !== "C" ? index - 7 : 0;
     return {
       name: keyName,
       sharpsCount,
