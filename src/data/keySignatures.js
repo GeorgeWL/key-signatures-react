@@ -74,12 +74,11 @@ export function getAccidentalsOfKey(accidentalsCount, accidentalType) {
     throw TypeError(
       `accidentalsCount property should only be a number between 0-7. Received ${accidentalsCount}`
     );
-
   switch (accidentalType) {
     case "flat":
-      return Array.from(flattenedKeys).slice(0, accidentalsCount);
+      return Object.values(flattenedKeys).slice(0, accidentalsCount);
     case "sharp":
-      return Array.from(sharpenedKeys).slice(0, accidentalsCount);
+      return Object.values(sharpenedKeys).slice(0, accidentalsCount);
     default:
       throw TypeError(
         `accidentalType property should only be 'flat' or 'sharp'. Received ${accidentalType}`
