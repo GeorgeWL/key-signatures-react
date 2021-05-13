@@ -1,8 +1,12 @@
 {
   "name": "key-signatures-react",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "For helping me learn music theory for my hobby of singing, I'm building this application of Flash Cards for Key Signatures and the Triads of those key signatures",
+  "keywords": [
+    "music",
+    "music theory",
+    "flash cards"
+  ],
   "main": "src/index.js",
   "dependencies": {
     "classnames": "2.3.1",
