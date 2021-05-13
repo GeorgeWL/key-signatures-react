@@ -10,6 +10,7 @@ export default function App() {
         <h2>Start editing to see some magic happen!</h2>
       </header>
       <main>
+        <Clef type="bass" />
         <Clef type="treble" />
       </main>
       <footer>

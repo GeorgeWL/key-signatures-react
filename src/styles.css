@@ -2,3 +2,13 @@
   font-family: sans-serif;
   text-align: center;
 }
+.clef {
+  text-align: center;
+  height: 50px;
+}
+.treble.clef {
+  width: 50px;
+}
+.bass.clef {
+  width: 30px;
+}
