@@ -1,37 +1,107 @@
 import {
   createSimpleKeyObjects,
   getAccidentalsOfKey,
+  mergeAccidentalsWithKey,
   generateKeySignatures
 } from "./keySignatures";
 const sharpenedKeys = {
-  fSharp: "F#",
   cSharp: "C#",
-  gSharp: "G#",
   dSharp: "D#",
-  aSharp: "A#",
   eSharp: "E#",
+  fSharp: "F#",
+  gSharp: "G#",
+  aSharp: "A#",
   bSharp: "B#"
 };
 const flattenedKeys = {
-  bFlat: "B♭",
-  eFlat: "E♭",
-  aFlat: "A♭",
-  dFlat: "D♭",
-  gFlat: "G♭",
   cFlat: "C♭",
-  fFlat: "F♭"
+  dFlat: "D♭",
+  eFlat: "E♭",
+  fFlat: "F♭",
+  gFlat: "G♭",
+  aFlat: "A♭",
+  bFlat: "B♭"
 };
-// Expected objects Sharp Keys
-const cMajor = [];
-const gMajor = [sharpenedKeys.fSharp].sort();
-const dMajor = [...gMajor, sharpenedKeys.cSharp].sort();
-const aMajor = [...dMajor, sharpenedKeys.gSharp].sort();
-const eMajor = [...aMajor, sharpenedKeys.dSharp].sort();
-const bMajor = [...eMajor, sharpenedKeys.aSharp].sort();
-const fSharpMajor = [...bMajor, sharpenedKeys.eSharp].sort();
-const cSharpMajor = Object.values(sharpenedKeys).sort();
+// Sharpened Keys
+const cMajorSharpenedKeys = [];
+const gMajorSharpenedKeys = [sharpenedKeys.fSharp].sort();
+const dMajorSharpenedKeys = [
+  ...gMajorSharpenedKeys,
+  sharpenedKeys.cSharp
+].sort();
+const aMajorSharpenedKeys = [
+  ...dMajorSharpenedKeys,
+  sharpenedKeys.gSharp
+].sort();
+const eMajorSharpenedKeys = [
+  ...aMajorSharpenedKeys,
+  sharpenedKeys.dSharp
+].sort();
+const bMajorSharpenedKeys = [
+  ...eMajorSharpenedKeys,
+  sharpenedKeys.aSharp
+].sort();
+const fSharpMajorSharpenedKeys = [
+  ...bMajorSharpenedKeys,
+  sharpenedKeys.eSharp
+].sort();
+const cSharpMajorSharpenedKeys = Object.values(sharpenedKeys).sort();
 // Flat keys
 const dFlatMajor = Object.values(flattenedKeys).sort();
+
+const cMajorKeySignature = ["C", "D", "E", "F", "G", "A", "B"];
+const gMajorKeySignature = ["C", "D", "E", sharpenedKeys.fSharp, "G", "A", "B"];
+const dMajorKeySignature = [
+  sharpenedKeys.cSharp,
+  "D",
+  "E",
+  sharpenedKeys.fSharp,
+  "G",
+  "A",
+  "B"
+];
+const aMajorKeySignature = [
+  sharpenedKeys.cSharp,
+  "D",
+  "E",
+  sharpenedKeys.fSharp,
+  sharpenedKeys.gSharp,
+  "A",
+  "B"
+];
+const eMajorKeySignature = [
+  sharpenedKeys.cSharp,
+  sharpenedKeys.dSharp,
+  "E",
+  sharpenedKeys.fSharp,
+  sharpenedKeys.gSharp,
+  "A",
+  "B"
+];
+const bMajorKeySignature = [
+  sharpenedKeys.cSharp,
+  sharpenedKeys.dSharp,
+  "E",
+  sharpenedKeys.fSharp,
+  sharpenedKeys.gSharp,
+  sharpenedKeys.aSharp,
+  "B"
+];
+const fSharpMajorKeySignature = [
+  sharpenedKeys.cSharp,
+  sharpenedKeys.dSharp,
+  sharpenedKeys.eSharp,
+  sharpenedKeys.fSharp,
+  sharpenedKeys.gSharp,
+  sharpenedKeys.aSharp,
+  "B"
+];
+const cSharpMajorKeySignature = cSharpMajorSharpenedKeys;
+const eFlatMajorKeySignature = ["C", "D", "E", "F", "G", "A", "B"];
+const aFlatMajorKeySignature = ["C", "D", "E", "F", "G", "A", "B"];
+const bFlatMajorKeySignature = ["C", "D", "E", "F", "G", "A", "B"];
+const fMajorKeySignature = ["C", "D", "E", "F", "G", "A", "B"];
+
 describe("Create Simple Key Signature Objects for Major Key Signatures", () => {
   const keySignaturesArray = createSimpleKeyObjects();
   const keyC = keySignaturesArray.find((x) => x.name === "C");
@@ -119,14 +189,14 @@ describe("Create Simple Key Signature Objects for Major Key Signatures", () => {
 describe("Get Accidentals of Each Key Signatures Correctly", () => {
   it("gives error responses for invalid paramaters");
   it("Returns Sharps as Notes for each Key with Sharps", () => {
-    expect(getAccidentalsOfKey(0, "sharp")).toEqual(cMajor);
-    expect(getAccidentalsOfKey(1, "sharp")).toEqual(gMajor);
-    expect(getAccidentalsOfKey(2, "sharp")).toEqual(dMajor);
-    expect(getAccidentalsOfKey(3, "sharp")).toEqual(aMajor);
-    expect(getAccidentalsOfKey(4, "sharp")).toEqual(eMajor);
-    expect(getAccidentalsOfKey(5, "sharp")).toEqual(bMajor);
-    expect(getAccidentalsOfKey(6, "sharp")).toEqual(fSharpMajor);
-    expect(getAccidentalsOfKey(7, "sharp")).toEqual(cSharpMajor);
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual(cMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(1, "sharp")).toEqual(gMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(2, "sharp")).toEqual(dMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(3, "sharp")).toEqual(aMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(4, "sharp")).toEqual(eMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(5, "sharp")).toEqual(bMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(6, "sharp")).toEqual(fSharpMajorSharpenedKeys);
+    expect(getAccidentalsOfKey(7, "sharp")).toEqual(cSharpMajorSharpenedKeys);
   });
   it("Returns Flats as Notes for each Key with Flats", () => {
     expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
@@ -138,5 +208,31 @@ describe("Get Accidentals of Each Key Signatures Correctly", () => {
     //   expect(getAccidentalsOfKey(6, "flat")).toEqual([]);
     expect(getAccidentalsOfKey(7, "flat")).toEqual(dFlatMajor);
   });
+});
+describe("Merges Accidentals with original Key correctly", () => {
+  expect(mergeAccidentalsWithKey(cMajorSharpenedKeys)).toEqual(
+    cMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(gMajorSharpenedKeys)).toEqual(
+    gMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(dMajorSharpenedKeys)).toEqual(
+    dMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(aMajorSharpenedKeys)).toEqual(
+    aMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(eMajorSharpenedKeys)).toEqual(
+    eMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(bMajorSharpenedKeys)).toEqual(
+    bMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(fSharpMajorSharpenedKeys)).toEqual(
+    fSharpMajorKeySignature
+  );
+  expect(mergeAccidentalsWithKey(cSharpMajorSharpenedKeys)).toEqual(
+    cSharpMajorKeySignature
+  );
 });
 describe("Get Relative Minor for each Key", () => {});

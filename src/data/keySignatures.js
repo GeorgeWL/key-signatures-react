@@ -40,7 +40,8 @@ export function generateKeySignatures() {
     relativeMinor: {
       ...getPositionCircularArray(keyObjectsSimple, index + 3),
       sharpsCount: key.sharpsCount,
-      flatsCount: key.flatsCount
+      flatsCount: key.flatsCount,
+      keys: []
     }
   }));
   return keyObjects;
@@ -84,6 +85,13 @@ export function getAccidentalsOfKey(accidentalsCount, accidentalType) {
         `accidentalType property should only be 'flat' or 'sharp'. Received ${accidentalType}`
       );
   }
+}
+const keyCMajor = ["C", "D", "E", "F", "G", "A", "B"];
+export function mergeAccidentalsWithKey(accidentals) {
+  const keyUnFiltered = [...accidentals, keyCMajor];
+  return keyCMajor.filter((note) =>
+    keyUnFiltered.includes(new RegExp(note, "gi"))
+  );
 }
 
 // Localised
