@@ -43,13 +43,13 @@ export function generateKeySignatures() {
         key.sharpsCount > 0 ? "sharp" : "flat"
       );
       return mergeAccidentalsWithKey(accidentals);
-    })(),
-    relativeMinor: {
-      ...getPositionCircularArray(keyObjectsSimple, index + 3),
-      sharpsCount: key.sharpsCount,
-      flatsCount: key.flatsCount,
-      keys: []
-    }
+    })()
+    // relativeMinor: {
+    //   ...getPositionCircularArray(keyObjectsSimple, index + 3),
+    //   sharpsCount: key.sharpsCount,
+    //   flatsCount: key.flatsCount,
+    //   keys: []
+    // }
   }));
   return keyObjects;
 }
