@@ -37,6 +37,13 @@ export function generateKeySignatures() {
   const keyObjectsSimple = createSimpleKeyObjects();
   const keyObjects = keyObjectsSimple.map((key, index) => ({
     ...key,
+    notes: (() => {
+      const accidentals = getAccidentalsOfKey(
+        key.sharpsCount > 0 ? key.sharpsCount : key.flatsCount,
+        key.sharpsCount > 0 ? "sharp" : "flat"
+      );
+      return mergeAccidentalsWithKey(accidentals);
+    })(),
     relativeMinor: {
       ...getPositionCircularArray(keyObjectsSimple, index + 3),
       sharpsCount: key.sharpsCount,
