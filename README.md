@@ -2,6 +2,8 @@
 
 For helping me learn music theory for my hobby of singing, I'm building this application of Flash Cards for Key Signatures and the Triads of those key signatures
 
+**Until full release, all updates onto main branch unless a refactor. On release, use feature trunking (branch then merge after completion)**
+
 ## TODO:
 
 - [ ] Create Clef with Bass or Treble as property
