@@ -21,6 +21,17 @@ const flattenedKeys = {
   cFlat: "C♭",
   fFlat: "F♭"
 };
+// Expected objects Sharp Keys
+const cMajor = [];
+const gMajor = [sharpenedKeys.fSharp].sort();
+const dMajor = [...gMajor, sharpenedKeys.cSharp].sort();
+const aMajor = [...dMajor, sharpenedKeys.gSharp].sort();
+const eMajor = [...aMajor, sharpenedKeys.dSharp].sort();
+const bMajor = [...eMajor, sharpenedKeys.aSharp].sort();
+const fSharpMajor = [...bMajor, sharpenedKeys.eSharp].sort();
+const cSharpMajor = Object.values(sharpenedKeys).sort();
+// Flat keys
+const dFlatMajor = Object.values(flattenedKeys).sort();
 describe("Create Simple Key Signature Objects for Major Key Signatures", () => {
   const keySignaturesArray = createSimpleKeyObjects();
   const keyC = keySignaturesArray.find((x) => x.name === "C");
@@ -104,27 +115,28 @@ describe("Create Simple Key Signature Objects for Major Key Signatures", () => {
     expect(keyCFlat.flatsCount).toEqual(7);
   });
 });
-describe("Get Flats of Each Key Signatures Correctly", () => {
-  it.todo("gives error responses for invalid paramaters");
-  it.todo("Returns Sharps as Notes for each Key with Sharps", () => {
-    expect(getAccidentalsOfKey(0, "sharp")).toEqual([]);
-    expect(getAccidentalsOfKey(1, "sharp")).toEqual([sharpenedKeys.fSharp]);
-    // expect(getAccidentalsOfKey(2, "sharp")).toEqual([]);
-    // expect(getAccidentalsOfKey(3, "sharp")).toEqual([]);
-    // expect(getAccidentalsOfKey(4, "sharp")).toEqual([]);
-    // expect(getAccidentalsOfKey(5, "sharp")).toEqual([]);
-    // expect(getAccidentalsOfKey(6, "sharp")).toEqual([]);
-    // expect(getAccidentalsOfKey(7, "sharp")).toEqual([]);
+
+describe("Get Accidentals of Each Key Signatures Correctly", () => {
+  it("gives error responses for invalid paramaters");
+  it("Returns Sharps as Notes for each Key with Sharps", () => {
+    expect(getAccidentalsOfKey(0, "sharp")).toEqual(cMajor);
+    expect(getAccidentalsOfKey(1, "sharp")).toEqual(gMajor);
+    expect(getAccidentalsOfKey(2, "sharp")).toEqual(dMajor);
+    expect(getAccidentalsOfKey(3, "sharp")).toEqual(aMajor);
+    expect(getAccidentalsOfKey(4, "sharp")).toEqual(eMajor);
+    expect(getAccidentalsOfKey(5, "sharp")).toEqual(bMajor);
+    expect(getAccidentalsOfKey(6, "sharp")).toEqual(fSharpMajor);
+    expect(getAccidentalsOfKey(7, "sharp")).toEqual(cSharpMajor);
   });
-  it.todo("Returns Flats as Notes for each Key with Flats", () => {
+  it("Returns Flats as Notes for each Key with Flats", () => {
     expect(getAccidentalsOfKey(0, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(1, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(2, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(3, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(4, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(5, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(6, "flat")).toEqual([]);
-    // expect(getAccidentalsOfKey(7, "flat")).toEqual([]);
+    //   expect(getAccidentalsOfKey(1, "flat")).toEqual([]);
+    //   expect(getAccidentalsOfKey(2, "flat")).toEqual([]);
+    //   expect(getAccidentalsOfKey(3, "flat")).toEqual([]);
+    //   expect(getAccidentalsOfKey(4, "flat")).toEqual([]);
+    //   expect(getAccidentalsOfKey(5, "flat")).toEqual([]);
+    //   expect(getAccidentalsOfKey(6, "flat")).toEqual([]);
+    expect(getAccidentalsOfKey(7, "flat")).toEqual(dFlatMajor);
   });
-  it.todo("Get Relative Minor for each Key");
 });
+describe("Get Relative Minor for each Key", () => {});

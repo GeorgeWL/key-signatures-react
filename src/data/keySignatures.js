@@ -76,9 +76,9 @@ export function getAccidentalsOfKey(accidentalsCount, accidentalType) {
     );
   switch (accidentalType) {
     case "flat":
-      return Object.values(flattenedKeys).slice(0, accidentalsCount);
+      return Object.values(flattenedKeys).slice(0, accidentalsCount).sort();
     case "sharp":
-      return Object.values(sharpenedKeys).slice(0, accidentalsCount);
+      return Object.values(sharpenedKeys).slice(0, accidentalsCount).sort();
     default:
       throw TypeError(
         `accidentalType property should only be 'flat' or 'sharp'. Received ${accidentalType}`
