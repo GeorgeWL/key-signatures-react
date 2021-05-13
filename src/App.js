@@ -10,7 +10,6 @@ export default function App() {
         <h2>Start editing to see some magic happen!</h2>
       </header>
       <main>
-        {JSON.stringify(keySignatures.find((key) => key.name === "C"))}
         <Clef type="treble" />
       </main>
       <footer>
@@ -21,7 +20,7 @@ export default function App() {
           rel="noreferrer noopener"
         >
           Music Icons Collection
-        </a>
+        </a>{" "}
         by Vasily Gedzun from the Noun Project
       </footer>
     </div>
