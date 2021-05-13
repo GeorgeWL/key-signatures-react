@@ -1,11 +1,29 @@
 import "./styles.css";
 import { generateKeySignatures } from "./data/keySignatures";
+import Clef from "./components/clef";
+const keySignatures = generateKeySignatures();
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      {JSON.stringify(generateKeySignatures())}
+      <header>
+        <h1>Hello CodeSandbox</h1>
+        <h2>Start editing to see some magic happen!</h2>
+      </header>
+      <main>
+        {JSON.stringify(keySignatures.find((key) => key.name === "C"))}
+        <Clef type="treble" />
+      </main>
+      <footer>
+        All icons used are from the{" "}
+        <a
+          href="https://thenounproject.com/vasily21/collection/music/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Music Icons Collection
+        </a>
+        by Vasily Gedzun from the Noun Project
+      </footer>
     </div>
   );
 }

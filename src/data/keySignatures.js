@@ -105,12 +105,12 @@ export function mergeAccidentalsWithKey(accidentals) {
   );
 }
 
-// Localised
-function getPositionCircularArray(array, index) {
-  const arrayLength = array.length;
-  const position = ((index % arrayLength) + arrayLength) % arrayLength;
-  return array[position];
-}
+// // Localised
+// function getPositionCircularArray(array, index) {
+//   const arrayLength = array.length;
+//   const position = ((index % arrayLength) + arrayLength) % arrayLength;
+//   return array[position];
+// }
 const keySignatures = generateKeySignatures();
 
 export default keySignatures;
