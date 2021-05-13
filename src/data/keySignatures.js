@@ -62,7 +62,7 @@ export function createSimpleKeyObjects() {
 
 export function getRelativeMinorOfKey(keyName) {
   throw new Error("Not Yet Implemented");
-  return {};
+  // return {};
 }
 
 // the group name for Flat/Natural/Sharp identifiers is accidentals
@@ -77,9 +77,9 @@ export function getAccidentalsOfKey(accidentalsCount, accidentalType) {
     );
   switch (accidentalType) {
     case "flat":
-      return Object.values(flattenedKeys).slice(0, accidentalsCount).sort();
+      return Object.values(flattenedKeys).slice(0, accidentalsCount);
     case "sharp":
-      return Object.values(sharpenedKeys).slice(0, accidentalsCount).sort();
+      return Object.values(sharpenedKeys).slice(0, accidentalsCount);
     default:
       throw TypeError(
         `accidentalType property should only be 'flat' or 'sharp'. Received ${accidentalType}`
@@ -88,9 +88,13 @@ export function getAccidentalsOfKey(accidentalsCount, accidentalType) {
 }
 const keyCMajor = ["C", "D", "E", "F", "G", "A", "B"];
 export function mergeAccidentalsWithKey(accidentals) {
-  const keyUnFiltered = [...accidentals, keyCMajor];
-  return keyCMajor.filter((note) =>
-    keyUnFiltered.includes(new RegExp(note, "gi"))
+  const accidentalsWithoutSymbols = accidentals.map((key) =>
+    key.replace(/[#♭]/gi, "")
+  );
+  return keyCMajor.map((note) =>
+    accidentalsWithoutSymbols.includes(note)
+      ? accidentals.find((accidental) => new RegExp(note).test(accidental))
+      : note
   );
 }
 
